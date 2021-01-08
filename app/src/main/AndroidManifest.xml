@@ -12,11 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<!--        <activity android:name=".Views.Login"></activity>-->
+        <activity android:name=".Views.ForgotPassword"></activity>
+        <!-- <activity android:name=".Views.Login"></activity> -->
         <activity
-            android:name="com.example.besafe.Views.Login"
-            android:label="@string/app_name"
-            >
+            android:name=".Views.Login"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
