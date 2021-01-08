@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+
+    <color name="blueActionButton">#0971F1</color>
+    <color name="greyBackground">#E3E3E3</color>
+
+    <!--    FONTS   -->
+    <color name="courseFontWhite">#FFFFFF</color>
+    <color name="courseFontGrey">#787878</color>
+    <color name="courseFontBlack">#000000</color>
+    <color name="courseFontBlue">#0971F1</color>
+    <!--    PROGRESSBAR     -->
+    <color name="progressBarStart_grey">#80D6D6D6</color>
+    <color name="progressBarEnd_grey">#80818181</color>
+
+    <color name="progressBarStart_green">#83FF67</color>
+    <color name="progressBarEnd_green">#169828</color>
+
+    <color name="progressBarStart_blue">#4498FF</color>
+    <color name="progressBarEnd_blue">#0CA6F8</color>
+
+</resources>
