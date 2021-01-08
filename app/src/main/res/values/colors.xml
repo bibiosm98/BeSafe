@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
+    <color name="white">#FFFFFF</color>
+    <color name="greyImage">#BCCCCA</color>
+
 
     <color name="blueActionButton">#0971F1</color>
     <color name="greyBackground">#E3E3E3</color>

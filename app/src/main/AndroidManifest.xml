@@ -12,8 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Views.ForgotPassword"></activity>
-        <!-- <activity android:name=".Views.Login"></activity> -->
+        <activity android:name=".Views.UserProfil"></activity>
+        <activity android:name=".Views.UserCourses" />
+        <activity android:name=".Views.ForgotPassword" /> <!-- <activity android:name=".Views.Login"></activity> -->
         <activity
             android:name=".Views.Login"
             android:label="@string/app_name">

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Views.UserCourses">
+<!--        app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="20sp"
+            android:paddingTop="20sp"
+            android:text="Moje Kursy"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@color/courseFontBlack"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <LinearLayout
+            android:id="@+id/linearLayoutMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_input"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"
+            android:padding="5sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <TextView
+                android:id="@+id/coursesStartedBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:background="@drawable/round_edittext_white"
+                android:text= "W trakcie trwania"
+                android:textAlignment="center"
+                android:textColor="@color/courseFontBlack"
+                />
+
+            <TextView
+                android:id="@+id/coursesSpace"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/greyBackground"
+                android:textAlignment="center"
+                />
+
+            <TextView
+                android:id="@+id/coursesEndedBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:background="@drawable/round_edittext_grey"
+                android:text="Zakończone"
+                android:textAlignment="center"
+                android:textColor="@color/courseFontBlack"
+                />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutMenu"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="100dp"
+            android:paddingBottom="200dp">
+
+            <LinearLayout
+                android:id="@+id/coursesLinear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity=""
+                app:layout_constraintBottom_toTopOf="@+id/section_layout"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayoutMenu">
+
+            </LinearLayout>
+        </ScrollView>
+
+        <include
+            android:id="@+id/menuLayout"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            layout="@layout/user_menu">
+        </include>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

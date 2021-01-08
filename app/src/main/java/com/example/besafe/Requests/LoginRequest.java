@@ -20,7 +20,7 @@ public class LoginRequest {
 
     final static String API = "https://bhpapi.herokuapp.com";
 
-    public static void logIn(final Context context, String userEmail, String userPassword){
+    public static void logIn(final Context context, String userEmail, String userPassword, final CourseRequest.VolleyCallback callback){
         final ProgressDialog loading = new ProgressDialog(context);
         loading.setMessage("Please Wait...");
         loading.setCanceledOnTouchOutside(false);
@@ -41,6 +41,7 @@ public class LoginRequest {
                         try {
                             Log.d("JSON", String.valueOf(response));
                             loading.dismiss();
+                            callback.onSuccess(response);
                             String Error = response.getString("httpStatus");
                             if (Error.equals("")){
 
