@@ -101,7 +101,7 @@ public class UserCourses extends AppCompatActivity {
     public void getCourses(final boolean endedCourses) {
         Log.i(TAG, "Function getCourses()");
 
-        CourseRequest.getUserCourses(this, "/user/courses", new CourseRequest.VolleyCallback() {
+        CourseRequest.getUserCourses(this, "user/courses", new CourseRequest.VolleyCallback() {
             @Override
             public void onSuccess(JSONObject result) {
                 allUserCourses = (JSONObject) result;
@@ -125,7 +125,7 @@ public class UserCourses extends AppCompatActivity {
         try {
             coursesList = allUserCourses.getJSONArray("response");
 
-            int start = 8;
+            int start = 0;
             int counter = -1;
             Log.i(TAG, "Pętla, dodaje TextViewsy");
             for (int i = start; i < coursesList.length(); i++) {
@@ -308,13 +308,11 @@ public class UserCourses extends AppCompatActivity {
     }
 
     public void openCourse(JSONObject courseInfo) {
-        Log.i(TAG, "OpenCourse Image");
-////        Intent intent = new Intent(UserCourses.this, UserMenu.class);
-//            Intent intent = new Intent(UserCourses.this, CourseView.class);
-//            Bundle b = new Bundle();
-//            b.putString("course", courseInfo.toString());
-//            intent.putExtras(b); //Put your id to your next Intent
-//            startActivity(intent);
-//            finish();
+        Intent intent = new Intent(UserCourses.this, CourseView.class);
+        Bundle b = new Bundle();
+        b.putString("course", courseInfo.toString());
+        intent.putExtras(b);
+        startActivity(intent);
+        finish();
     }
 }

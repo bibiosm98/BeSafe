@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Views.CourseSection">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingStart="20dp"
+        android:id="@+id/courseNameConstraint"
+        >
+        <TextView
+            android:id="@+id/courseNameInSectionView"
+            android:layout_width="match_parent"
+            android:layout_height="30sp"
+            android:text=""
+            android:textSize="20sp"
+            android:textColor="@color/courseFontGrey"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            >
+        </TextView>
+
+        <TextView
+            android:id="@+id/courseSubsectionName"
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:text=""
+            android:textSize="30sp"
+            android:textColor="@color/courseFontBlack"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/courseNameInSectionView"
+            app:layout_constraintLeft_toLeftOf="parent"
+            >
+        </TextView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="@+id/menuLayout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/courseNameConstraint"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="80dp"
+        >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="3dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/courseSectionView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/courseSectionLinearView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    <include
+        android:id="@+id/menuLayout"
+        android:layout_width="match_parent"
+        android:layout_height="70sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout="@layout/user_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Views.CourseView">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="@+id/menuLayout"
+        android:paddingBottom="80dp">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@id/nameAndImageConstraint"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/round_course_gradient_blue"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+<!--                    android:src="@mipmap/ic_banner"-->
+                    <TextView
+                        android:id="@+id/courseName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nazwa..."
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#000000"
+                        android:textSize="25sp"
+                        android:textStyle="bold|italic"
+                        app:layout_constraintLeft_toLeftOf="@+id/courseInfoBackground"
+                        app:layout_constraintBottom_toTopOf="@+id/courseFinishDate"/>
+
+                    <TextView
+                        android:id="@+id/courseFinishDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="Kurs nalezy ukończyć przed: "
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        android:textStyle="bold|italic"
+                        app:layout_constraintLeft_toLeftOf="@+id/courseInfoBackground"
+                        app:layout_constraintBottom_toTopOf="@+id/courseInfoBackground"/>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/courseInfoBackground"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:background="@drawable/round_transparent_view"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginBottom="20dp"
+                        android:padding="10dp"
+                        app:layout_constraintLeft_toLeftOf="@+id/nameAndImageConstraint"
+                        app:layout_constraintRight_toRightOf="@+id/nameAndImageConstraint"
+                        app:layout_constraintBottom_toBottomOf="@+id/nameAndImageConstraint">
+
+
+                        <TextView
+                            android:id="@+id/completedSections"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ukończono "
+                            android:textSize="13sp"
+                            android:textColor="@color/courseFontWhite"
+                            app:layout_constraintLeft_toLeftOf="@+id/courseInfoBackground"
+                            app:layout_constraintBottom_toBottomOf="@+id/courseInfoBackground"
+                            />
+
+                        <TextView
+                            android:id="@+id/exam"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Test Końcowy"
+                            android:textSize="15sp"
+                            android:textColor="@color/courseFontWhite"
+                            app:layout_constraintRight_toRightOf="@+id/courseInfoBackground"
+                            app:layout_constraintBottom_toBottomOf="@+id/courseInfoBackground"/>
+
+                        <ProgressBar
+                            android:id="@+id/courseProgressBar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:max="100"
+                            android:progress="0"
+                            android:progressDrawable="@drawable/progress_bar_line"
+                            app:layout_constraintRight_toRightOf="@+id/courseInfoBackground"
+                            app:layout_constraintLeft_toLeftOf="@+id/courseInfoBackground"
+                            app:layout_constraintTop_toTopOf="@+id/courseInfoBackground"
+                            />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/sectionsList"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:id="@+id/sectionsListLinear"
+                        >
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/CourseInfoConstraint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20sp"
+                    android:layout_marginEnd="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nameAndImageConstraint"
+                    tools:layout_editor_absoluteX="96dp">
+
+
+                    <TextView
+                        android:id="@+id/courseInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:text="Informacje o kursie"
+                        android:textColor="#332C2C"
+                        android:textColorHint="#000000"
+                        android:textSize="25sp"
+                        android:textStyle="bold|italic"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintLeft_toLeftOf="@id/CourseInfoConstraint"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/courseInfoValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10sp"
+                        android:layout_marginBottom="5dp"
+                        android:text="W tym kursie zapoznasz się z uniwersalnymi zasadami dotyczącymi bezpieczeństwa i higieny pracy."
+                        android:textColor="@color/courseFontGrey"
+                        android:textColorHint="#000000"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintLeft_toLeftOf="@id/CourseInfoConstraint"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/courseInfo" />
+
+
+                    <TextView
+                        android:id="@+id/version"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="13dp"
+                        android:layout_marginTop="15dp"
+                        android:text="Wersja"
+                        android:textSize="18sp"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintLeft_toLeftOf="@id/courseInfo"
+                        app:layout_constraintTop_toBottomOf="@+id/courseInfoValue" />
+
+
+                    <TextView
+                        android:id="@+id/versionValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="13dp"
+                        android:maxWidth="250sp"
+                        android:text="1.0"
+                        android:textSize="18sp"
+                        android:textColor="@color/courseFontBlack"
+                        android:textStyle="bold|italic"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintTop_toBottomOf="@id/courseInfoValue"
+                        app:layout_constraintVertical_bias="0.0" />
+                    <TextView
+                        android:id="@+id/category"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="13dp"
+                        android:layout_marginTop="15dp"
+                        android:text="Kategoria"
+                        android:textSize="18sp"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintLeft_toLeftOf="@id/courseInfo"
+                        app:layout_constraintTop_toBottomOf="@+id/version" />
+
+
+                    <TextView
+                        android:id="@+id/categoryValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="13dp"
+                        android:maxWidth="250sp"
+                        android:text="Bezpieczeństwo w sieci"
+                        android:textColor="@color/courseFontBlack"
+                        android:textSize="18sp"
+                        android:textStyle="bold|italic"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintTop_toBottomOf="@id/versionValue"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <TextView
+                        android:id="@+id/level"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="13dp"
+                        android:layout_marginTop="15dp"
+                        android:text="Poziom"
+                        android:textSize="18sp"
+                        app:layout_constraintLeft_toLeftOf="@+id/courseInfo"
+                        app:layout_constraintTop_toBottomOf="@+id/categoryValue"
+
+                        />
+
+
+                    <TextView
+                        android:id="@+id/levelValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="13dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Początkujący"
+                        android:textColor="@color/courseFontBlack"
+                        android:textSize="18sp"
+                        android:textStyle="bold|italic"
+                        app:layout_constraintRight_toRightOf="@+id/CourseInfoConstraint"
+                        app:layout_constraintTop_toBottomOf="@+id/categoryValue" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include
+        android:id="@+id/menuLayout"
+        android:layout_width="match_parent"
+        android:layout_height="70sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout="@layout/user_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

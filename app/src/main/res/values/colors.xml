@@ -6,6 +6,7 @@
 
     <color name="white">#FFFFFF</color>
     <color name="greyImage">#BCCCCA</color>
+    <color name="transparentview">#4DFFFFFF</color>
 
 
     <color name="blueActionButton">#0971F1</color>
@@ -14,8 +15,10 @@
     <!--    FONTS   -->
     <color name="courseFontWhite">#FFFFFF</color>
     <color name="courseFontGrey">#787878</color>
+    <color name="courseFontGrey2">#787878</color>
     <color name="courseFontBlack">#000000</color>
     <color name="courseFontBlue">#0971F1</color>
+
     <!--    PROGRESSBAR     -->
     <color name="progressBarStart_grey">#80D6D6D6</color>
     <color name="progressBarEnd_grey">#80818181</color>

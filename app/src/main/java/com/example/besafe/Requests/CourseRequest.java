@@ -24,7 +24,7 @@ import java.util.Map;
 
 public class CourseRequest extends AppCompatActivity {
     final static String TAG = "AllCourseRequest";
-    final static String API = "https://bhpapi.herokuapp.com/api";
+    final static String API = "https://bhpapi.herokuapp.com/api/";
 
     public static void getUserCourses(final Context context, String link, final VolleyCallback callback){
         Log.i(TAG, "Requests: UserCourseRequest");
