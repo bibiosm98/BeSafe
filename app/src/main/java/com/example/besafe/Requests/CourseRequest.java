@@ -17,13 +17,14 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.besafe.GlobalToken;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class CourseRequest extends AppCompatActivity {
-    final static String TAG = "AllCourseRequest";
+    final static String TAG = "CourseRequest";
     final static String API = "https://bhpapi.herokuapp.com/api/";
 
     public static void getUserCourses(final Context context, String link, final VolleyCallback callback){
@@ -37,6 +38,11 @@ public class CourseRequest extends AppCompatActivity {
         JsonObjectRequest userCourses = new JsonObjectRequest(Request.Method.GET, API+link, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                try {
+                    Log.i(TAG, response.toString(3));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 callback.onSuccess(response);
                 loading.dismiss();
             }

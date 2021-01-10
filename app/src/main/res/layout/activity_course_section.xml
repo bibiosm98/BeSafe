@@ -80,8 +80,6 @@
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
     <include
         android:id="@+id/menuLayout"
         android:layout_width="match_parent"
