@@ -13,6 +13,7 @@
     <string name="createAccount">Nie mam konta, co zrobić?</string>
     <string name="textViewHelloInfo">Zaloguj się, aby dostać się do bazy kursów</string>
     <string name="forgotPassword">Nie pamiętam hasła</string>
+    <string name="previevBtn"><![CDATA[<]]></string>
 
 
 </resources>

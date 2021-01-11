@@ -2,4 +2,6 @@
 <resources>
     <dimen name="user_profil_head_font">16dp</dimen>
     <dimen name="user_profil_font">16sp</dimen>
+    <dimen name="space_fat">1dp</dimen>
+    <dimen name="linear_size">30dp</dimen>
 </resources>

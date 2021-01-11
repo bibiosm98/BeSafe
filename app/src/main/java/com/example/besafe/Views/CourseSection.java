@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,10 +15,12 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.URLUtil;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -36,6 +39,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -270,47 +274,89 @@ public class CourseSection extends AppCompatActivity {
     }
 
     public void addVideo(ConstraintLayout videoViewConstraint, JSONObject result){
-//
-//        result.toString(3);
+////
+////        result.toString(3);
 //        VideoView videoView = findViewById(R.id.videoView);
         VideoView videoView = new VideoView(CourseSection.this);
         MediaController controller = new MediaController(CourseSection.this);
-        controller.setMediaPlayer(videoView);
-        videoView.setMediaController(controller);
-
-        Uri videoUri = null;
-        videoUri = getMedia("https://developers.google.com/training/images/tacoma_narrows.mp4");
-        videoView.setVideoURI(videoUri);
+        MediaPlayer mp = new MediaPlayer();
+//
+//        Uri videoUri = null;
+////        videoUri = getMedia("https://developers.google.com/training/images/tacoma_narrows.mp4");
+////        videoUri = getMedia("https://bhpserver.blob.core.windows.net/bhp1/vid1.mp4?se=2020-12-05T21%3A53%3A34Z&sp=rt&sv=2020-02-10&sr=b&sig=8uavVeC0Ihgk3A8kjT3EetbaCKDQLthhVF4fRqCbWcM%3Dtype=video/mp4");
+////        videoView.setVideoURI(videoUri);
 //        try {
 //            videoUri = getMedia(result.getString("response"));
-//            Map<String, String> headers = new HashMap<>();
-//            headers.put("token", GlobalToken.getTOKEN());
-//            videoView.setVideoURI(videoUri, headers);
-//        } catch (JSONException e) {
+////            Map<String, String> headers = new HashMap<>();
+////            headers.put("token", GlobalToken.getTOKEN());
+////            videoView.setVideoURI(videoUri, headers);
+//
+//            mp.setDataSource(this, videoUri);
+            controller.setMediaPlayer(videoView);
+            videoView.setMediaController(controller);
+//            videoView.setVideoURI(videoUri);
+//        } catch (JSONException | IOException e) {
 //            e.printStackTrace();
 //        }
 ////        videoView.setVideoURI(videoUri);
 
 
+        Uri video = null;
+//        try {
+//            video = Uri.parse(result.getString("response"));
+//            video = Uri.parse("https://developers.google.com/training/images/tacoma_narrows.mp4");
+//            videoView.setVideoURI(video);
+////            videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+////                @Override
+////                public void onPrepared(MediaPlayer mp) {
+////                    mp.setLooping(true);
+////                    videoView.start();
+////                }
+////            });
+////        } catch (JSONException e) {
+////            e.printStackTrace();
+////        }
+//        videoView.setMediaController(new MediaController(this));
+//        videoView.setVideoURI(Uri.parse("https://developers.google.com/training/images/tacoma_narrows.mp4"));
+//        videoView.requestFocus();
+//        videoView.start();
+
+
+        String LINK = null;
+        try {
+            LINK = result.getString("response");
+            LINK = "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4";
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        MediaController mc = new MediaController(this);
+        mc.setAnchorView(videoView);
+        mc.setMediaPlayer(videoView);
+        video = Uri.parse(LINK);
+        videoView.setMediaController(mc);
+        videoView.setVideoURI(video);
+        videoView.start();
+
+
 //        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
-        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(1000, 800);
+        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, 800);
         params.setMargins(40,50,40, 60);
         videoView.setLayoutParams(params);
 
+        TextView videoCaption = (TextView) videoViewConstraint.getChildAt(0);
+        videoCaption.setId(View.generateViewId());
+        videoView.setId(View.generateViewId());
+        videoViewConstraint.setId(View.generateViewId());
+//        videoViewConstraint.setBackground(ResourcesCompat.getDrawable(null, R.drawable.round_edittext_white, null));
 
-//        ConstraintLayout imageView = new ConstraintLayout(this);
-//        imageView.setId(View.generateViewId());
-//        imageViewConstraint.setId(View.generateViewId());
 
-        ConstraintLayout video = (ConstraintLayout)  videoViewConstraint.getChildAt(0);
-        TextView videoCaption = (TextView) video.getChildAt(0);
 
         ConstraintSet set = new ConstraintSet();
         set.clone(videoViewConstraint);
-        set.connect(video.getId(), ConstraintSet.LEFT, videoViewConstraint.getId(), ConstraintSet.LEFT);
-        set.connect(video.getId(), ConstraintSet.RIGHT, videoViewConstraint.getId(), ConstraintSet.RIGHT);
-        set.connect(video.getId(), ConstraintSet.TOP, videoViewConstraint.getId(), ConstraintSet.TOP);
-        set.connect(video.getId(), ConstraintSet.BOTTOM, videoViewConstraint.getId(), ConstraintSet.BOTTOM);
+        set.connect(videoView.getId(), ConstraintSet.LEFT, videoViewConstraint.getId(), ConstraintSet.LEFT);
+        set.connect(videoView.getId(), ConstraintSet.RIGHT, videoViewConstraint.getId(), ConstraintSet.RIGHT);
+//        set.connect(video.getId(), ConstraintSet.TOP, videoViewConstraint.getId(), ConstraintSet.TOP);
+//        set.connect(video.getId(), ConstraintSet.BOTTOM, videoViewConstraint.getId(), ConstraintSet.BOTTOM);
 
 
         set.connect(videoCaption.getId(), ConstraintSet.RIGHT, videoViewConstraint.getId(), ConstraintSet.RIGHT);
@@ -318,9 +364,6 @@ public class CourseSection extends AppCompatActivity {
         set.connect(videoCaption.getId(), ConstraintSet.BOTTOM, videoViewConstraint.getId(), ConstraintSet.BOTTOM);
 
         set.applyTo(videoViewConstraint);
-
-
-
         videoViewConstraint.addView(videoView);
     }
     public void addNextButton(){

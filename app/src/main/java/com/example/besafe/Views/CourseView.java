@@ -153,31 +153,11 @@ public class CourseView extends AppCompatActivity {
             try {
                 ConstraintLayout section = (ConstraintLayout) getLayoutInflater().inflate(R.layout.course_on_list, null);
 
-
                 subsection = (JSONObject) sections.get(i);
                 name = subsection.getString("name");
                 description = subsection.getString("description");
                 subsections = subsection.getJSONArray("subsections");
                 final int subsectionCount = subsections.length();
-
-                final int finalI = i;
-                section.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = null;
-                        intent = new Intent(CourseView.this, CourseSection.class);
-                        Bundle b = new Bundle();
-                        b.putString("course", courseJSON.toString());
-                        b.putString("section", String.valueOf(finalI+1));
-                        b.putString("subsection", String.valueOf(1));
-                        b.putInt("subsectionCount", subsectionCount);
-
-                        intent.putExtras(b); //Put your id to your next Intent
-                        startActivity(intent);
-                        finish();
-                    }
-                });
-
 
                 TextView sectionName = new TextView(CourseView.this);
                 TextView sectionDescription = new TextView(CourseView.this);
@@ -210,9 +190,57 @@ public class CourseView extends AppCompatActivity {
                 if(oneSection*(i+1) <= complete_percent){
                     progressValue = 100;
                 }
+
+                ConstraintLayout lastPercent;
+                int progress;
+                if(i>0) {
+                    lastPercent = (ConstraintLayout) sectionsList.getChildAt(i - 1);
+                    progress = ((ProgressBar) lastPercent.getChildAt(2)).getProgress();
+
+                    sectionProgress.setText("LOCK");
+                    if(progress == 100) {
+                        sectionProgress.setText(String.valueOf(progressValue) + "%");
+                        final int finalI = i;
+                        section.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = null;
+                                intent = new Intent(CourseView.this, CourseSection.class);
+                                Bundle b = new Bundle();
+                                b.putString("course", courseJSON.toString());
+                                b.putString("section", String.valueOf(finalI + 1));
+                                b.putString("subsection", String.valueOf(1));
+                                b.putInt("subsectionCount", subsectionCount);
+
+                                intent.putExtras(b);
+                                startActivity(intent);
+                                finish();
+                            }
+                        });
+                    }
+                }else{
+                    final int finalI = i;
+                    sectionProgress.setText(String.valueOf(progressValue) + "%");
+                    section.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = null;
+                            intent = new Intent(CourseView.this, CourseSection.class);
+                            Bundle b = new Bundle();
+                            b.putString("course", courseJSON.toString());
+                            b.putString("section", String.valueOf(finalI + 1));
+                            b.putString("subsection", String.valueOf(1));
+                            b.putInt("subsectionCount", subsectionCount);
+
+                            intent.putExtras(b); //Put your id to your next Intent
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                }
+
                 Log.i(TAG, "oneSection*(i+1) = "+ oneSection*(i+1));
                 Log.i(TAG, "oneSection*(i) = "+ oneSection*(i));
-                sectionProgress.setText(String.valueOf(progressValue) + "%");
                 sectionProgress.setPadding(0,0,0,0);
                 sectionProgressBar.setProgress(progressValue);
 
@@ -344,8 +372,13 @@ public class CourseView extends AppCompatActivity {
             public void onClick(View view) {
                 Log.i(TAG, "onclick 1");
                 Toast.makeText(view.getContext(), "EGZAMIN???", Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(CourseView.this, CourseExamView.class);
-//                    startActivity(intent);
+
+                Intent intent = new Intent(CourseView.this, ExamView.class);
+                Bundle b = new Bundle();
+                b.putString("courseId", courseID);
+                intent.putExtras(b);
+
+                startActivity(intent);
             }
         });
     }

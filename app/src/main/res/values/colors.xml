@@ -33,4 +33,7 @@
     <color name="gradientStart_blue">#5385FF</color>
     <color name="gradientEnd_blue">#115EDE</color>
 
+    <color name="gradientStart_gold">#FFC107</color>
+    <color name="gradientEnd_gold">#FFC107</color>
+
 </resources>

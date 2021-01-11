@@ -276,6 +276,8 @@ public class UserCourses extends AppCompatActivity {
         set.connect(courseView.getChildAt(3).getId(), ConstraintSet.RIGHT, courseView.getChildAt(0).getId(), ConstraintSet.RIGHT, margin);
 //        set.connect(courseView.getChildAt(3).getId(), ConstraintSet.BOTTOM, courseView.getId(), ConstraintSet.BOTTOM, margin);
 //        set.connect(courseView.getChildAt(3).getId(), ConstraintSet.RIGHT, courseView.getId(), ConstraintSet.RIGHT, margin);
+//        set.connect(courseView.getChildAt(0).getId(),ConstraintSet.LEFT, courseView.getId(), ConstraintSet.LEFT, margin);
+        set.connect(courseView.getChildAt(0).getId(),ConstraintSet.RIGHT, courseView.getId(), ConstraintSet.RIGHT, margin);
 
 
         set.centerHorizontally(courseView.getChildAt(4).getId(), courseView.getChildAt(3).getId());
