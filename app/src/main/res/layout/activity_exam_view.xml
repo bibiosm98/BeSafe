@@ -102,7 +102,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/userHeaderInfo"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                android:background="@drawable/round_backgroud_white"
+                android:background="@drawable/round_background_white"
                 >
 
                 <LinearLayout
@@ -354,20 +354,20 @@
         app:layout_constraintTop_toBottomOf="@+id/courseStartInfo">
 
         <Button
-            android:id="@+id/previevBtn"
+            android:id="@+id/examLaterBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
-            android:background="@drawable/round_backgroud_white_border_blue"
+            android:background="@drawable/round_background_white_border_blue"
             android:padding="10dp"
             android:text="Powrót do kursu"
             android:textColor="@color/courseFontBlue"
             android:textSize="15sp"
-            app:layout_constraintRight_toLeftOf="@+id/nextBtn"
+            app:layout_constraintRight_toLeftOf="@+id/examStartBtn"
             app:layout_constraintTop_toTopOf="@+id/examBtns" />
 
         <Button
-            android:id="@+id/nextBtn"
+            android:id="@+id/examStartBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round_button_blue"
