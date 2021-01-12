@@ -6,10 +6,10 @@
     <string name="apiLink">"https://bhpapi.herokuapp.com/api"</string>
 
     <!--    LOGOWANIE  AUTOMATYCZNE  -->
-<!--    <string name="hardEmail">zhangbrian@harvey.biz</string>-->
-<!--    <string name="hardPassword">james01</string>-->
-    <string name="hardEmail">bibiosm98@gmail.com</string>
-    <string name="hardPassword">Mlynarski!98</string>
+    <string name="hardEmail">zhangbrian@harvey.biz</string>
+    <string name="hardPassword">james01</string>
+<!--    <string name="hardEmail">bibiosm98@gmail.com</string>-->
+<!--    <string name="hardPassword">Mlynarski!98</string>-->
 
     <string name="logIn">Zaloguj się</string>
     <string name="createAccount">Nie mam konta, co zrobić?</string>

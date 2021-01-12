@@ -71,11 +71,11 @@
                         android:id="@+id/userViewImage"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
+                        android:background="@mipmap/user_icon"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         />
-<!--                    app:srcCompat="@mipmap/icon_user_profil_blue"-->
 
                     <TextView
                         android:id="@+id/userMenuProfilTextView"

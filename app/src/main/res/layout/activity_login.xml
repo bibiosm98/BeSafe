@@ -7,6 +7,19 @@
     android:layout_height="match_parent"
     tools:context=".Views.Login">
 
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/login_animation"
+        />
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -16,35 +29,9 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="149dp"
-                    android:layout_height="126dp"
-                    android:layout_marginTop="60dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    />
-
-<!--                app:srcCompat="@mipmap/be_safe_icon2"-->
-                <TextView
-                    android:id="@+id/textViewBeSafe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#FFFFFF"
-                    android:backgroundTint="#FFFFFF"
-                    android:text="@string/app_name"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView5" />
-
+                android:orientation="vertical"
+                android:layout_marginTop="240dp"
+                >
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/textViewHelloLayout"
@@ -53,7 +40,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewBeSafe">
+                    app:layout_constraintTop_toTopOf="parent">
 
 
                     <TextView
@@ -63,9 +50,10 @@
                         android:layout_marginTop="10dp"
                         android:text="Cześć"
                         android:textSize="30sp"
+                        android:textColor="@color/courseFontBlack"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.1"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -74,12 +62,10 @@
                         android:layout_width="310dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:paddingStart="20sp"
-                        android:paddingEnd="20sp"
                         android:text="@string/textViewHelloInfo"
-                        android:textSize="20sp"
+                        android:textSize="15sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.1"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textViewHello" />
 

@@ -177,7 +177,7 @@ public class CourseSection extends AppCompatActivity {
                         Log.i("video", subsections.get(i).toString());
 
 //                        subsectionView.setBackground(ContextCompat.getDrawable(this, R.drawable.round_course_gradient_blue));
-                        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, 800);
+                        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, 600);
                         params.setMargins(40,50,40, 60);
                         subsectionView.setLayoutParams(params);
 
@@ -191,7 +191,8 @@ public class CourseSection extends AppCompatActivity {
 
                         ID = i;
                         Log.i("ID 1 =", String.valueOf(ID));
-                        CourseRequest.getUserCourses(this, "courses/" + courseId + "/" + ((JSONObject) subsections.get(i)).getString("data"), new CourseRequest.VolleyCallback() {
+//                        CourseRequest.getUserCourses(this, "courses/" + courseId + "/" + ((JSONObject) subsections.get(i)).getString("data"), new CourseRequest.VolleyCallback() {
+                        CourseRequest.getUserCourses(this, "courses/" + "bhp1" + "/" + ((JSONObject) subsections.get(i)).getString("data"), new CourseRequest.VolleyCallback() {
                             @Override
                             public void onSuccess(JSONObject result) {
                                 Log.i("ID 2 =", String.valueOf(ID));
@@ -325,7 +326,7 @@ public class CourseSection extends AppCompatActivity {
         String LINK = null;
         try {
             LINK = result.getString("response");
-            LINK = "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4";
+//            LINK = "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4";
         } catch (JSONException e) {
             e.printStackTrace();
         }
