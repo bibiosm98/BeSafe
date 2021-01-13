@@ -13,20 +13,25 @@ import android.widget.Toast;
 
 import com.example.besafe.R;
 import com.example.besafe.Requests.CourseRequest;
+import com.example.besafe.UserBottomMenu;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Objects;
 
 public class UserProfil extends AppCompatActivity {
     String TAG = "UserProfil";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(R.layout.activity_user_profil);
 
+        new UserBottomMenu().setOnClickMenu(this, true);
         getUserData();
     }
+
 
     public void getUserData(){
 //        String url = getResources().getString(R.string.apiLink) + "api/user";

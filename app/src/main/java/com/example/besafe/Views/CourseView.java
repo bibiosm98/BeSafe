@@ -37,7 +37,7 @@ public class CourseView extends AppCompatActivity {
         setContentView(R.layout.activity_course_view);
 
         sectionsList = findViewById(R.id.sectionsListLinear);
-        new UserBottomMenu().setOnClickMenu(this);
+        new UserBottomMenu().setOnClickMenu(this, false);
         getBundle();
         try {
             courseID = courseJSON.getJSONObject("course_id").getString("$oid");

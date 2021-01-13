@@ -33,20 +33,22 @@
 
                     <ImageButton
                         android:id="@+id/coursesViewImage"
-                        android:layout_width="31dp"
+                        android:layout_width="25dp"
                         android:layout_height="25dp"
+                        android:background="@mipmap/courses_icon_blue_grey_xxxhdpi"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         />
-<!--                    app:srcCompat="@mipmap/be_safe_icon"-->
 
                     <TextView
                         android:id="@+id/userMenuCursesTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Moje Kursy"
-                        android:textSize="15sp"
+                        android:textColor="@color/courseFontBlue"
+                        android:textSize="@dimen/menu_font_weight"
+                        android:textStyle="bold"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/coursesViewImage"/>
@@ -69,9 +71,9 @@
 
                     <ImageButton
                         android:id="@+id/userViewImage"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:background="@mipmap/user_icon"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@mipmap/user_icon_grey_xxxhdpi"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -82,7 +84,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Profil"
-                        android:textSize="15sp"
+                        android:textSize="@dimen/menu_font_weight"
+                        android:textStyle="bold"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/userViewImage"/>

@@ -58,7 +58,7 @@ public class UserCourses extends AppCompatActivity {
 
         layoutList = findViewById(R.id.coursesLinear);
 
-        new UserBottomMenu().setOnClickMenu(this);
+        new UserBottomMenu().setOnClickMenu(this, false);
 
         setTopMenuOnClick();
         getCourses(false);
@@ -141,8 +141,11 @@ public class UserCourses extends AppCompatActivity {
 
                 addCourseTextAndProgressBar(course, i - start);
 
+                JSONObject JsonId = coursesList.getJSONObject(i).getJSONObject("course_id");
+                String courseId = JsonId.getString("$oid");
                 String file = course.getString("thumbnail");
-                String url = API + "/api/courses/" + "bhp1" + "/" + file;
+//                String url = API + "/api/courses/" + "bhp1" + "/" + file;
+                String url = API + "/api/courses/" + courseId + "/" + file;
                 ;
                 Log.i(TAG, "ulr do zdjęcia = " + url.toString());
                 {

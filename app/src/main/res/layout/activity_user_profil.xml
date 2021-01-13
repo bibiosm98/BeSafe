@@ -72,7 +72,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginBottom="5dp"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="20dp"
@@ -82,12 +82,14 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="20dp"
+                            android:background="@mipmap/user_icon_blue_white_xxxhdpi"
                             />
                         <TextView
                             android:id="@+id/userName"
                             android:layout_width="0dp"
                             android:layout_weight="12"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/profilMarginStart"
                             android:text="Użytkownik"
                             android:textSize="@dimen/user_profil_font"
                             android:textStyle="bold"
@@ -109,11 +111,13 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="20dp"
+                            android:background="@mipmap/icon_calendar_blue_xxxhdpi"
                             />
                         <TextView
                             android:layout_width="0dp"
                             android:layout_weight="6"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/profilMarginStart"
                             android:text="Data urodzin"
                             android:textSize="@dimen/user_profil_font"
                             android:textStyle="bold"
@@ -144,11 +148,13 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="20dp"
+                            android:background="@mipmap/icon_email_blue_xxxhdpi"
                             />
                         <TextView
                             android:layout_width="0dp"
                             android:layout_weight="3"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/profilMarginStart"
                             android:text="E-mail"
                             android:textStyle="bold"
                             android:textSize="@dimen/user_profil_font"
@@ -207,7 +213,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginBottom="5dp"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="20dp"
@@ -217,12 +223,14 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="20dp"
+                            android:background="@mipmap/icon_briefcase_blue_xxxhdpi"
                             />
                         <TextView
                             android:id="@+id/companyName"
                             android:layout_width="0dp"
                             android:layout_weight="12"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/profilMarginStart"
                             android:text="Firma"
                             android:textSize="@dimen/user_profil_font"
                             android:textStyle="bold"
@@ -242,13 +250,15 @@
 
                         <ImageView
                             android:layout_width="0dp"
-                            android:layout_weight="1"
+                            android:layout_weight="2"
                             android:layout_height="20dp"
+                            android:background="@mipmap/icon_phone_blue_xxxhdpi"
                             />
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_weight="6"
+                            android:layout_weight="13"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/profilMarginStart"
                             android:text="Numer kontaktowy"
                             android:textSize="@dimen/user_profil_font"
                             android:textStyle="bold"
@@ -257,7 +267,7 @@
                         <TextView
                             android:id="@+id/companyNumber"
                             android:layout_width="0dp"
-                            android:layout_weight="6"
+                            android:layout_weight="11"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/user_profil_font"
                             android:textColor="@color/courseFontGrey"
@@ -279,11 +289,13 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="20dp"
+                            android:background="@mipmap/icon_email_blue_xxxhdpi"
                             />
                         <TextView
                             android:layout_width="0dp"
                             android:layout_weight="3"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/profilMarginStart"
                             android:text="E-mail"
                             android:textSize="@dimen/user_profil_font"
                             android:textStyle="bold"
@@ -317,12 +329,14 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="20dp"
+                            android:background="@mipmap/icon_link_blue_xxxhdpi"
                             />
                         <TextView
                             android:id="@+id/companyWebPageLink"
                             android:layout_width="0dp"
                             android:layout_weight="12"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/profilMarginStart"
                             android:text="Przejdź do strony www"
                             android:textSize="@dimen/user_profil_font"
                             android:textStyle="bold"
@@ -370,7 +384,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginBottom="5dp"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="20dp"
@@ -380,12 +394,14 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="20dp"
+                            android:background="@mipmap/user_icon_blue_white_xxxhdpi"
                             />
                         <TextView
                             android:id="@+id/menagerName"
                             android:layout_width="0dp"
                             android:layout_weight="6"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/profilMarginStart"
                             android:textSize="@dimen/user_profil_font"
                             android:textStyle="bold"
                             android:textColor="@color/courseFontBlack"
@@ -415,11 +431,13 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="20dp"
+                            android:background="@mipmap/icon_email_blue_xxxhdpi"
                             />
                         <TextView
                             android:layout_width="0dp"
                             android:layout_weight="3"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/profilMarginStart"
                             android:text="E-mail"
                             android:textSize="@dimen/user_profil_font"
                             android:textStyle="bold"
@@ -475,12 +493,15 @@
                         <ImageView
                             android:layout_width="0dp"
                             android:layout_height="20dp"
-                            android:layout_weight="1" />
+                            android:layout_weight="1"
+                            android:background="@mipmap/icon_back_blue_xxxhdpi"
+                            />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="12"
+                            android:layout_marginStart="@dimen/profilMarginStart"
                             android:text="Wyloguj się z konta"
                             android:textSize="@dimen/user_profil_font"
                             android:textStyle="bold"

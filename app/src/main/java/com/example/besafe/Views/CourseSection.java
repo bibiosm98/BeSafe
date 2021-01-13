@@ -64,7 +64,7 @@ public class CourseSection extends AppCompatActivity {
         setContentView(R.layout.activity_course_section);
         courseSections = findViewById(R.id.courseSectionLinearView);
 
-        new UserBottomMenu().setOnClickMenu(this);
+        new UserBottomMenu().setOnClickMenu(this, false);
         loadCourseSection();
     }
 
@@ -145,7 +145,11 @@ public class CourseSection extends AppCompatActivity {
                     case "picture":{
                         Log.i("picture", subsections.get(i).toString());
                         String data = ((JSONObject) subsections.get(i)).getString("data");
-                        String url = getResources().getString(R.string.apiLink)+"/courses/"+"bhp1"+"/" + data;
+
+                        String url = getResources().getString(R.string.apiLink)+"/courses/"+courseId+"/" + data;
+//                        String url = getResources().getString(R.string.apiLink)+"/courses/"+"bhp1"+"/" + data;
+
+
                         String caption = ((JSONObject) subsections.get(i)).getString("caption");
 
 //                        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, 50);
