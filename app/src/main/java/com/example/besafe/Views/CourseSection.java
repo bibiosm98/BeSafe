@@ -88,6 +88,7 @@ public class CourseSection extends AppCompatActivity {
             courseSection = b.getString("section");
             courseSubsection = Integer.parseInt(Objects.requireNonNull(b.getString("subsection")));
             subsectionCount = b.getInt("subsectionCount");
+            Log.i(TAG, "courseSection  " + courseSection+ "  courseSubsection  " +courseSubsection+ "  subsectionCount  " + subsectionCount);
         }
         try {
             courseJSON = new JSONObject(value);
@@ -399,7 +400,7 @@ public class CourseSection extends AppCompatActivity {
             nextButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(CourseSection.this, "button OnClick FINISH", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(CourseSection.this, "button OnClick FINISH", Toast.LENGTH_SHORT).show();
                     courseSections.removeAllViews();
                     Log.i("BACK", "BACK TO COURSE VIEW");
 //                            finishAffinity();
@@ -417,7 +418,7 @@ public class CourseSection extends AppCompatActivity {
             nextButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(CourseSection.this, "button OnClick", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(CourseSection.this, "button OnClick", Toast.LENGTH_SHORT).show();
                     courseSections.removeAllViews();
                     Log.i("REQUEST", "user/course/" + courseId + "/" + courseSection + "/" + String.valueOf(courseSubsection +1));
                     sectionRequest("user/course/" + courseId + "/" + courseSection + "/" + String.valueOf(courseSubsection +1));
