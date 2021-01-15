@@ -28,7 +28,10 @@ public class CourseImageRequest {
                 new Response.ErrorListener() {
                     public void onErrorResponse(VolleyError error) {
                         Log.i("Image error", error.toString());
-
+                        if(GlobalToken.getFLAG()){
+                            GlobalToken.setFLAG(false);
+                            CourseImageRequest.getImage(context, "https://bhpapi.herokuapp.com/api/courses/bhp1/pic1.jpg", courseNumber, callback);
+                        }
                     }
                 }){
             @Override

@@ -19,7 +19,7 @@
         <activity android:name=".Views.CourseView" />
         <activity android:name=".Views.UserProfil" />
         <activity android:name=".Views.UserCourses" />
-        <activity android:name=".Views.ForgotPassword" /> <!-- <activity android:name=".Views.Login"></activity> -->
+        <activity android:name=".Views.ForgotPassword" />
         <activity
             android:name=".Views.Login"
             android:label="@string/app_name">

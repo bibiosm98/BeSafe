@@ -194,7 +194,7 @@ public class UserCourses extends AppCompatActivity {
                 nameTextView.setText(name);
                 nameTextView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                 nameTextView.setTextColor(getResources().getColor(R.color.courseFontWhite));
-                nameTextView.setPadding(40, 0, 0, 0);
+                nameTextView.setPadding(40, 0, 80, 0);
 
                 companyTextView.setId(companyID);
                 companyTextView.setTextSize(15);

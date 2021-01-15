@@ -250,13 +250,13 @@
 
                         <ImageView
                             android:layout_width="0dp"
-                            android:layout_weight="2"
+                            android:layout_weight="4"
                             android:layout_height="20dp"
                             android:background="@mipmap/icon_phone_blue_xxxhdpi"
                             />
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_weight="13"
+                            android:layout_weight="25"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/profilMarginStart"
                             android:text="Numer kontaktowy"
@@ -267,7 +267,7 @@
                         <TextView
                             android:id="@+id/companyNumber"
                             android:layout_width="0dp"
-                            android:layout_weight="11"
+                            android:layout_weight="23"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/user_profil_font"
                             android:textColor="@color/courseFontGrey"

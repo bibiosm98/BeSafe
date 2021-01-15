@@ -30,6 +30,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 public class ExamView extends AppCompatActivity {
@@ -40,6 +43,11 @@ public class ExamView extends AppCompatActivity {
     String chosenAnswer;
     int allQuestion;
     int questionSend;
+
+    Date startTime;
+    Date endTime;
+    Date datte;
+    boolean examEndFlag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,7 +179,7 @@ public class ExamView extends AppCompatActivity {
             @Override
             public void onSuccess(JSONObject result) {
                 try {
-//                    Log.i("getQuestion", result.toString(3));
+                    Log.i("getQuestion", result.toString(3));
                     loadQuestionView(result.getJSONObject("response"));
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -191,14 +199,17 @@ public class ExamView extends AppCompatActivity {
 //            textView.setText("Pozostały czas:" + time);
 
         try {
+            startTime = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(response.getString("start_time"));
+            endTime = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(response.getString("end_time"));
             loadQuestionView(response.getJSONObject("first_question"));
-        } catch (JSONException e) {
+        } catch (JSONException | ParseException e) {
             e.printStackTrace();
         }
     }
 
     public void loadQuestionView(JSONObject response) {
         setContentView(R.layout.activity_exam_question_view);
+        setExamClock();
         try {
 //            if(response.getString("picture").equals("null")){
 //                Log.i("EXAM", "No picture");
@@ -348,6 +359,69 @@ public class ExamView extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void setExamClock(){
+        Log.i("diff", String.valueOf(endTime.getTime()-startTime.getTime()));
+        long timeLong = endTime.getTime()-startTime.getTime();
+        datte = new Date();
+        datte.setTime(timeLong);
+
+        Thread myThread = null;
+
+        Runnable runnable = new CountDownRunner();
+        myThread= new Thread(runnable);
+        examEndFlag = false;
+        myThread.start();
+    }
+
+
+    class CountDownRunner implements Runnable{
+        @Override
+        public void run() {
+            while(!Thread.currentThread().isInterrupted()){
+                try {
+                    doWork();
+                    if(examEndFlag){
+                        Thread.currentThread().interrupt();
+                    }
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }catch(Exception e){
+                }
+            }
+        }
+    }
+
+    public void doWork() {
+        runOnUiThread(new Runnable() {
+            public void run() {
+                try{
+                    TextView txtCurrentTime = (TextView)findViewById(R.id.remainingTime);
+                    Date dt = datte;
+                    dt.setSeconds(dt.getSeconds()-1);
+                    Date dat = new Date();
+                    dat.setTime(5);
+                    if(datte.compareTo(dat)<=0){
+                        examEndFlag = true;
+                    }
+                    if(dt.getTime() < 3_595_000){
+                        txtCurrentTime.setTextColor(getResources().getColor(R.color.courseFontBlue));
+                    }
+                    int hours = dt.getHours();
+                    int minutes = dt.getMinutes();
+                    int seconds = dt.getSeconds();
+                    String curTime = "Pozostały czas: \n" + getZero(hours) + ":" + getZero(minutes) + ":" + getZero(seconds);
+                    txtCurrentTime.setText(curTime);
+                }catch (Exception e) {}
+            }
+        });
+    }
+
+    public String getZero(int x){
+        if(x<10) return "0" + x;
+        return String.valueOf(x);
     }
 }
 //C A A A

@@ -6,4 +6,6 @@
     <dimen name="linear_size">30dp</dimen>
     <dimen name="menu_font_weight">15sp</dimen>
     <dimen name="profilMarginStart">10dp</dimen>
+    <dimen name="animation_size">300dp</dimen>
+    <dimen name="animation_margin">250dp</dimen>
 </resources>
