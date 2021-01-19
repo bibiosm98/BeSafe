@@ -5,19 +5,21 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.besafe.BitmapOperation;
 import com.example.besafe.R;
+import com.example.besafe.Requests.CourseImageRequest;
 import com.example.besafe.Requests.CourseRequest;
 import com.example.besafe.UserBottomMenu;
 
@@ -132,6 +134,17 @@ public class CourseView extends AppCompatActivity {
             version.setText( ((JSONObject) properties.get(0)).getString("value"));
             categoryValue.setText( ((JSONObject) properties.get(1)).getString("value"));
             levelValue.setText( ((JSONObject) properties.get(2)).getString("value"));
+
+            String url = "https://bhpapi.herokuapp.com/api/courses/" + courseID + "/" + response.getString("thumbnail");
+            CourseImageRequest.getImage(this, url, 0, new CourseImageRequest.VolleyCallback() {
+                @Override
+                public void onSuccess(Bitmap bitmap, int courseNumber) {
+                    ImageView image = findViewById(R.id.courseImage);
+//                    BitmapToImage.convert(CourseView.this, bitmap, image);
+                    image.setBackground(BitmapOperation.scaleImage(CourseView.this, bitmap, image));
+                }
+            });
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

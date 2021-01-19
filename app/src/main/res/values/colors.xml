@@ -2,6 +2,7 @@
 <resources>
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
+<!--    <color name="colorPrimaryDark">#FFFFFF</color>-->
     <color name="colorAccent">#03DAC5</color>
 
     <color name="white">#FFFFFF</color>
@@ -18,6 +19,7 @@
     <color name="courseFontGrey2">#787878</color>
     <color name="courseFontBlack">#000000</color>
     <color name="courseFontBlue">#0971F1</color>
+    <color name="courseFontRed">#FF0A0A</color>
 
     <!--    PROGRESSBAR     -->
     <color name="progressBarStart_grey">#80D6D6D6</color>

@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.besafe.R;
 import com.example.besafe.Requests.CourseRequest;
 import com.example.besafe.Requests.LoginRequest;
@@ -24,6 +26,13 @@ public class Login extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(R.layout.activity_login);
+
+
+        final LottieAnimationView animationView = (LottieAnimationView) findViewById(R.id.loginAnimation);
+//        animationView.enableHardwareAcceleration(true);
+        animationView.buildDrawingCache(true);
+        animationView.enableMergePathsForKitKatAndAbove(true);
+
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN); // hidden keyboard
         setOnclick();

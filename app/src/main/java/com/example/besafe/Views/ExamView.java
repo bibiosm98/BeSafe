@@ -28,7 +28,6 @@ import com.example.besafe.Requests.ExamPostRequest;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -46,7 +45,7 @@ public class ExamView extends AppCompatActivity {
 
     Date startTime;
     Date endTime;
-    Date datte;
+    Date timeToEnd;
     boolean examEndFlag;
 
     @Override
@@ -364,8 +363,8 @@ public class ExamView extends AppCompatActivity {
     public void setExamClock(){
         Log.i("diff", String.valueOf(endTime.getTime()-startTime.getTime()));
         long timeLong = endTime.getTime()-startTime.getTime();
-        datte = new Date();
-        datte.setTime(timeLong);
+        timeToEnd = new Date();
+        timeToEnd.setTime(timeLong);
 
         Thread myThread = null;
 
@@ -381,9 +380,10 @@ public class ExamView extends AppCompatActivity {
         public void run() {
             while(!Thread.currentThread().isInterrupted()){
                 try {
-                    doWork();
                     if(examEndFlag){
                         Thread.currentThread().interrupt();
+                    }else{
+                        doWork();
                     }
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -399,19 +399,26 @@ public class ExamView extends AppCompatActivity {
             public void run() {
                 try{
                     TextView txtCurrentTime = (TextView)findViewById(R.id.remainingTime);
-                    Date dt = datte;
-                    dt.setSeconds(dt.getSeconds()-1);
+                    timeToEnd.setSeconds(timeToEnd.getSeconds()-1);
                     Date dat = new Date();
                     dat.setTime(5);
-                    if(datte.compareTo(dat)<=0){
+//                    if(datte.compareTo(dat)<=0){
+//                        examEndFlag = true;
+//                    }
+                    long second = 1000;
+                    long minute = 60000;
+                    long five_minutes = 300000;
+                    long hour = 3600000;
+//                    if(dt.getTime() < timeToEnd.getTime()){
+                    if(timeToEnd.getTime() < 293000){
                         examEndFlag = true;
                     }
-                    if(dt.getTime() < 3_595_000){
-                        txtCurrentTime.setTextColor(getResources().getColor(R.color.courseFontBlue));
+                    if(timeToEnd.getTime() < 297000){
+                        txtCurrentTime.setTextColor(getResources().getColor(R.color.courseFontRed));
                     }
-                    int hours = dt.getHours();
-                    int minutes = dt.getMinutes();
-                    int seconds = dt.getSeconds();
+                    int hours = timeToEnd.getHours();
+                    int minutes = timeToEnd.getMinutes();
+                    int seconds = timeToEnd.getSeconds();
                     String curTime = "Pozostały czas: \n" + getZero(hours) + ":" + getZero(minutes) + ":" + getZero(seconds);
                     txtCurrentTime.setText(curTime);
                 }catch (Exception e) {}

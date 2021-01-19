@@ -8,10 +8,10 @@
     <!--    LOGOWANIE  AUTOMATYCZNE  -->
 <!--    <string name="hardEmail">zhangbrian@harvey.biz</string>-->
 <!--    <string name="hardPassword">james01</string>-->
-    <string name="hardEmail">rsherman@irwin.com</string>
-    <string name="hardPassword">copelandlarry</string>
-<!--    <string name="hardEmail">bibiosm98@gmail.com</string>-->
-<!--    <string name="hardPassword">Mlynarski98!</string>-->
+<!--    <string name="hardEmail">rsherman@irwin.com</string>-->
+<!--    <string name="hardPassword">copelandlarry</string>-->
+    <string name="hardEmail">bibiosm98@gmail.com</string>
+    <string name="hardPassword">Mlynarski98!</string>
 
     <string name="logIn">Zaloguj się</string>
     <string name="createAccount">Nie mam konta, co zrobić?</string>
