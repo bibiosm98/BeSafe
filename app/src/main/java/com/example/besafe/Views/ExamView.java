@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.besafe.R;
@@ -42,11 +43,13 @@ public class ExamView extends AppCompatActivity {
     String chosenAnswer;
     int allQuestion;
     int questionSend;
+    int totalProgress = 0;
 
     Date startTime;
     Date endTime;
     Date timeToEnd;
     boolean examEndFlag;
+    String choosenAnswer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -200,6 +203,7 @@ public class ExamView extends AppCompatActivity {
         try {
             startTime = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(response.getString("start_time"));
             endTime = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(response.getString("end_time"));
+            setExamClock();
             loadQuestionView(response.getJSONObject("first_question"));
         } catch (JSONException | ParseException e) {
             e.printStackTrace();
@@ -208,7 +212,6 @@ public class ExamView extends AppCompatActivity {
 
     public void loadQuestionView(JSONObject response) {
         setContentView(R.layout.activity_exam_question_view);
-        setExamClock();
         try {
 //            if(response.getString("picture").equals("null")){
 //                Log.i("EXAM", "No picture");
@@ -226,6 +229,12 @@ public class ExamView extends AppCompatActivity {
 //                });
 //
 //            }
+            choosenAnswer = null;
+            if(response.has("selected_answer")){
+                if (!response.get("selected_answer").toString().equals("null")) {
+                    choosenAnswer = response.getString("selected_answer");
+                }
+            }
             TextView question = findViewById(R.id.question);
             question.setText(response.getString("question"));
 
@@ -235,9 +244,19 @@ public class ExamView extends AppCompatActivity {
             TextView questionNumberInfo = findViewById(R.id.questionNumber);
             questionNumber = Integer.parseInt(response.getString("order"));  // OR questionNumber++ in setTEstButton
 
+            ProgressBar examProgress = findViewById(R.id.examProgressBar);
+            examProgress.setProgress(totalProgress);
+            int newProgres = 100*questionNumber/allQuestion;
+            Log.i("PROGRESS", "new = " + newProgres + "  progress = " + examProgress.getProgress());
+            if(examProgress.getProgress()<newProgres){
+                examProgress.setProgress(newProgres);
+            }
+            totalProgress = examProgress.getProgress();
+
             setTestButtons();
+            String questionInfo = "Pytanie " + questionNumber + " z " + allQuestion;
 //            questionNumberInfo.setText("Pytanie " + questionNumber + " z " + (answers.length()+questionNumber));
-            questionNumberInfo.setText("Pytanie " + questionNumber + " z " + allQuestion);
+            questionNumberInfo.setText(questionInfo);
 
             for(int i=0; i<answers.length(); i++){
                 final TextView answer = new TextView(this);
@@ -255,6 +274,13 @@ public class ExamView extends AppCompatActivity {
                 paramsExample.setMargins(40, 30, 40, 20);;
                 answer.setLayoutParams(paramsExample);
 
+                if(choosenAnswer != null){
+                    if(choosenAnswer.equals(answers.getString(i))) {
+                        answer.setTextColor(getResources().getColor(R.color.courseFontWhite));
+                        answer.setBackgroundResource(R.drawable.round_button_blue);
+                        removeAllAnswers(answer.getId());
+                    }
+                }
                 answer.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -342,9 +368,15 @@ public class ExamView extends AppCompatActivity {
 //                    boolean passed = result.getBoolean("passed");
                     if(result.getBoolean("passed")){
                         setContentView(R.layout.exam_pass);
+                        TextView score = findViewById(R.id.examScore);
+                        String points = "" + result.getString("user_points") + "/" + result.getString("max_points");
+                        score.setText(points);
 
                     }else{
                         setContentView(R.layout.exam_failed);
+                        TextView score = findViewById(R.id.examScore);
+                        String points = "" + result.getString("user_points") + "/" + result.getString("max_points");
+                        score.setText(points);
                     }
                     findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -410,10 +442,10 @@ public class ExamView extends AppCompatActivity {
                     long five_minutes = 300000;
                     long hour = 3600000;
 //                    if(dt.getTime() < timeToEnd.getTime()){
-                    if(timeToEnd.getTime() < 293000){
+                    if(timeToEnd.getTime() < 2000){//293000){
                         examEndFlag = true;
                     }
-                    if(timeToEnd.getTime() < 297000){
+                    if(timeToEnd.getTime() < 60000){ //297000){
                         txtCurrentTime.setTextColor(getResources().getColor(R.color.courseFontRed));
                     }
                     int hours = timeToEnd.getHours();

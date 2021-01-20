@@ -139,7 +139,6 @@ public class UserCourses extends AppCompatActivity {
                     continue;
                 }
 
-                addCourseTextAndProgressBar(course, i - start);
 
                 JSONObject JsonId = coursesList.getJSONObject(i).getJSONObject("course_id");
                 String courseId = JsonId.getString("$oid");
@@ -148,7 +147,9 @@ public class UserCourses extends AppCompatActivity {
                 String url = API + "/api/courses/" + courseId + "/" + file;
                 ;
                 Log.i(TAG, "ulr do zdjęcia = " + url.toString());
-                {
+                boolean image = true;
+                if(image){
+                    addCourseTextAndProgressBar(course, i - start);
                     CourseImageRequest.getImage(this, url, counter, new CourseImageRequest.VolleyCallback() {
                         @Override
                         public void onSuccess(Bitmap bitmap, int courseNumber) {
@@ -158,6 +159,9 @@ public class UserCourses extends AppCompatActivity {
                         }
                     });
 //                    addImage(course, Bitmap.createBitmap(null));
+                }else{
+                    ConstraintLayout courseConstraint = (ConstraintLayout) layoutList.getChildAt(i);
+                    addGradient(courseConstraint);
                 }
             }
         } catch (JSONException e) {
@@ -242,6 +246,55 @@ public class UserCourses extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public void addGradient(ConstraintLayout courseView) {
+        {
+            ImageView image = new ImageView(UserCourses.this);
+//            courseView.setBackgroundColor(getResources().getColor(R.color.courseFontWhite));
+            courseView.setBackground(getResources().getDrawable(R.drawable.round_course_gradient_blue));
+//                            bitmap.setHeight(bitmap.getScaledHeight(200));
+            int gradientWidth = 300, //ConstraintLayout.LayoutParams.MATCH_PARENT,
+                gradientHeight = 250;
+            Log.i("TAG", "width= "+gradientWidth+" heigth= "+gradientHeight+"");
+//            Bitmap output = Bitmap.createBitmap(gradientWidth, gradientHeight, Bitmap.Config.ARGB_8888);
+//            Canvas canvas = new Canvas(output);
+//
+//            final int color = 0xff424242;
+//            final Paint paint = new Paint();
+//            final Rect rect = new Rect(0, 0, gradientWidth, gradientHeight);
+//            final RectF rectF = new RectF(rect);
+//
+//            paint.setAntiAlias(true);
+//            canvas.drawARGB(0, 0, 0, 0);
+//            paint.setColor(color);
+//            canvas.drawRoundRect(rectF, 40, 30, paint);
+//            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+//
+//            canvas.drawBitmap(output, rect, rect, paint);
+//
+//            BitmapDrawable ob = new BitmapDrawable(getResources(), output);
+//            image.setBackground(ob);
+//            image.setId(View.generateViewId());
+//            courseView.addView(image, 0);
+        }
+
+        int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, 30, getResources().getDisplayMetrics());
+        ConstraintSet set = new ConstraintSet();
+        set.clone(courseView);
+        set.connect(courseView.getChildAt(1).getId(), ConstraintSet.BOTTOM, courseView.getId(), ConstraintSet.BOTTOM);
+        set.connect(courseView.getChildAt(2).getId(), ConstraintSet.BOTTOM, courseView.getChildAt(1).getId(), ConstraintSet.TOP);
+        set.connect(courseView.getChildAt(2).getId(), ConstraintSet.BOTTOM, courseView.getId(), ConstraintSet.BOTTOM, margin);
+        set.connect(courseView.getChildAt(2).getId(), ConstraintSet.RIGHT, courseView.getId(), ConstraintSet.RIGHT, margin);
+//        set.connect(courseView.getChildAt(3).getId(), ConstraintSet.BOTTOM, courseView.getId(), ConstraintSet.BOTTOM, margin);
+//        set.connect(courseView.getChildAt(3).getId(), ConstraintSet.RIGHT, courseView.getId(), ConstraintSet.RIGHT, margin);
+//        set.connect(courseView.getChildAt(0).getId(),ConstraintSet.LEFT, courseView.getId(), ConstraintSet.LEFT, margin);
+        set.connect(courseView.getId(),ConstraintSet.RIGHT, courseView.getId(), ConstraintSet.RIGHT, margin);
+
+
+        set.centerHorizontally(courseView.getChildAt(3).getId(), courseView.getChildAt(2).getId());
+        set.centerVertically(courseView.getChildAt(3).getId(), courseView.getChildAt(2).getId());
+        set.applyTo(courseView);
     }
 
     public void addImage(ConstraintLayout courseView, Bitmap bitmap) {

@@ -18,10 +18,10 @@
             <shape>
                 <corners android:radius="5dip" />
                 <gradient
-                    android:startColor="@color/progressBarStart_blue"
-                    android:centerColor="@color/progressBarStart_blue"
+                    android:startColor="@color/gradientMiddle_blue"
+                    android:centerColor="@color/gradientMiddle_blue"
                     android:centerY="0.75"
-                    android:endColor="@color/progressBarEnd_blue"
+                    android:endColor="@color/gradientMiddle_blue"
                     android:angle="270"
                     />
             </shape>

@@ -463,7 +463,7 @@ public class CourseView extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "onclick 1");
-                Toast.makeText(view.getContext(), "EGZAMIN???", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(view.getContext(), "EGZAMIN???", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(CourseView.this, ExamView.class);
                 Bundle b = new Bundle();

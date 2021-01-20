@@ -60,7 +60,8 @@
             android:layout_marginTop="10dp"
             android:paddingStart="25dp"
             android:paddingEnd="25dp"
-            android:progress="20"
+            android:progress="0"
+            android:progressDrawable="@drawable/progress_bar_line"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -71,7 +72,7 @@
     <ScrollView
         android:id="@+id/questionsConstraint"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="550dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -148,9 +149,9 @@
         android:id="@+id/examBtns"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/questionsConstraint">
+        android:layout_margin="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <Button
             android:id="@+id/previevBtn"
@@ -170,11 +171,12 @@
             android:layout_height="wrap_content"
             android:background="@drawable/round_button_blue"
             android:padding="10dp"
-            android:text="NAstepne pytanie >"
+            android:text="Nastepne pytanie >"
             android:textColor="@color/courseFontWhite"
             android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/examBtns" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

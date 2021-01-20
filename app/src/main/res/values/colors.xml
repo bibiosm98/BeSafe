@@ -29,11 +29,12 @@
     <color name="progressBarEnd_green">#169828</color>
 
     <color name="progressBarStart_blue">#4498FF</color>
-    <color name="progressBarEnd_blue">#0CA6F8</color>
+    <color name="progressBarEnd_blue">#013895</color>
 
     <!--    GRADIENT    -->
     <color name="gradientStart_blue">#5385FF</color>
-    <color name="gradientEnd_blue">#115EDE</color>
+    <color name="gradientMiddle_blue">#1C5EFF</color>
+    <color name="gradientEnd_blue">#013895</color>
 
     <color name="gradientStart_gold">#FFC107</color>
     <color name="gradientEnd_gold">#FFC107</color>

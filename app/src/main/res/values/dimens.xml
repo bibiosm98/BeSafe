@@ -8,4 +8,9 @@
     <dimen name="profilMarginStart">10dp</dimen>
     <dimen name="animation_size">300dp</dimen>
     <dimen name="animation_margin">250dp</dimen>
+
+<!--    Exam View   -->
+    <dimen name="courseViewMarginStart">20dp</dimen>
+    <dimen name="examLinearImageMargin">6dp</dimen>
+    <dimen name="examLinearImageHeight">20dp</dimen>
 </resources>
