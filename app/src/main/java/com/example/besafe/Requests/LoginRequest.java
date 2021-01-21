@@ -63,9 +63,8 @@ public class LoginRequest {
                         Toast mToastToShow;
                         try {
                             json = (JSONObject) json.get("response");
-                            GlobalToken.setTOKEN((String) json.get("token"));// = (String) json.get("token");
-                            mToastToShow = Toast.makeText(context, "Token = " + GlobalToken.getTOKEN(), Toast.LENGTH_LONG);
-                            mToastToShow.show();
+                            GlobalToken.setTOKEN((String) json.get("token"));
+//                            Toast.makeText(context, "Token = " + GlobalToken.getTOKEN(), Toast.LENGTH_LONG).show();
 
                         } catch (JSONException e) {
                             e.printStackTrace();

@@ -21,8 +21,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.besafe.R;
+import com.example.besafe.Requests.CourseImageRequest;
 import com.example.besafe.Requests.CourseRequest;
 import com.example.besafe.Requests.ExamPostRequest;
 
@@ -50,6 +52,7 @@ public class ExamView extends AppCompatActivity {
     Date timeToEnd;
     boolean examEndFlag;
     String choosenAnswer;
+    String lastAnswer = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +105,7 @@ public class ExamView extends AppCompatActivity {
                 getQuestion(questionNumber-1);
             }
         });
-        if(questionNumber==1){
+        if(questionNumber == 1){
             button.setVisibility(View.GONE);
         }
 
@@ -112,7 +115,7 @@ public class ExamView extends AppCompatActivity {
             public void onClick(View v) {
                 Log.i("nextBTn", ""+(questionNumber+1));
                 //questionNumber++;
-                postAnswer();
+                postAnswer(false);
                 getQuestion(questionNumber+1);
             }
         });
@@ -213,22 +216,22 @@ public class ExamView extends AppCompatActivity {
     public void loadQuestionView(JSONObject response) {
         setContentView(R.layout.activity_exam_question_view);
         try {
-//            if(response.getString("picture").equals("null")){
-//                Log.i("EXAM", "No picture");
-//                ConstraintLayout imageConstraint = findViewById(R.id.imageConstraint);
-//                imageConstraint.removeAllViews();
-//            }else{
-//                Log.i("EXAM", "Set picture");
-//                ImageView testImage = findViewById(R.id.testImage);
-//                String url = "" + response.getString("picture");
-//                CourseImageRequest.getImage(this, "", 0, new CourseImageRequest.VolleyCallback() {
-//                    @Override
-//                    public void onSuccess(Bitmap bitmap, int courseNumber) {
-//                        addTestImage(bitmap);
-//                    }
-//                });
-//
-//            }
+            if(response.getString("picture").equals("null")){
+                Log.i("EXAM", "No picture");
+                ConstraintLayout imageConstraint = findViewById(R.id.imageConstraint);
+                imageConstraint.removeAllViews();
+            }else{
+                Log.i("EXAM", "Set picture");
+                ImageView testImage = findViewById(R.id.testImage);
+                String url = "https://bhpapi.herokuapp.com/api/courses/" + courseId + "/" + response.getString("picture");
+                CourseImageRequest.getImage(this, url, 2, 0, new CourseImageRequest.VolleyCallback() {
+                    @Override
+                    public void onSuccess(Bitmap bitmap, int courseNumber) {
+                        addTestImage(bitmap);
+                    }
+                });
+
+            }
             choosenAnswer = null;
             if(response.has("selected_answer")){
                 if (!response.get("selected_answer").toString().equals("null")) {
@@ -284,6 +287,10 @@ public class ExamView extends AppCompatActivity {
                 answer.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if(questionNumber == allQuestion){
+                            lastAnswer = answer.getText().toString();
+//                            Toast.makeText(ExamView.this, lastAnswer, Toast.LENGTH_SHORT).show();
+                        }
                         answer.setTextColor(getResources().getColor(R.color.courseFontWhite));
                         answer.setBackgroundResource(R.drawable.round_button_blue);
                         removeAllAnswers(answer.getId());
@@ -338,19 +345,25 @@ public class ExamView extends AppCompatActivity {
         imageConstraint.addView(image, 0);
     }
 
-    public void postAnswer() {
+    public void postAnswer(final boolean finish) {
         questionSend++;
         String link = "user/test/answer/" + courseId + "/" + questionNumber;
+        if(finish){
+            link = "user/test/answer/" + courseId + "/" + questionNumber;
+        }
         Log.i("LINK", link);
         JSONObject body = new JSONObject();
         try {
-            body.put("answer", chosenAnswer);
+            if(finish){
+                body.put("answer", lastAnswer);
+            }else{
+                body.put("answer", chosenAnswer);
+            }
 
             Log.i("JSON", body.toString(3));
             ExamPostRequest.examPost(this, link, body, new CourseRequest.VolleyCallback() {
                 @Override
                 public void onSuccess(JSONObject result) {
-
                 }
             });
         } catch (JSONException e) {
@@ -401,7 +414,7 @@ public class ExamView extends AppCompatActivity {
         Thread myThread = null;
 
         Runnable runnable = new CountDownRunner();
-        myThread= new Thread(runnable);
+        myThread = new Thread(runnable);
         examEndFlag = false;
         myThread.start();
     }
@@ -414,6 +427,8 @@ public class ExamView extends AppCompatActivity {
                 try {
                     if(examEndFlag){
                         Thread.currentThread().interrupt();
+                        postAnswer(true);
+                        finishExam();
                     }else{
                         doWork();
                     }
@@ -432,16 +447,7 @@ public class ExamView extends AppCompatActivity {
                 try{
                     TextView txtCurrentTime = (TextView)findViewById(R.id.remainingTime);
                     timeToEnd.setSeconds(timeToEnd.getSeconds()-1);
-                    Date dat = new Date();
-                    dat.setTime(5);
-//                    if(datte.compareTo(dat)<=0){
-//                        examEndFlag = true;
-//                    }
-                    long second = 1000;
-                    long minute = 60000;
-                    long five_minutes = 300000;
-                    long hour = 3600000;
-//                    if(dt.getTime() < timeToEnd.getTime()){
+
                     if(timeToEnd.getTime() < 2000){//293000){
                         examEndFlag = true;
                     }
@@ -463,4 +469,3 @@ public class ExamView extends AppCompatActivity {
         return String.valueOf(x);
     }
 }
-//C A A A

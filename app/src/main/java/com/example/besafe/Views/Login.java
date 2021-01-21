@@ -19,20 +19,16 @@ import org.json.JSONObject;
 import java.util.Objects;
 
 public class Login extends AppCompatActivity{
-//    final String TAG = "LoginActivity";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(R.layout.activity_login);
 
-
         final LottieAnimationView animationView = (LottieAnimationView) findViewById(R.id.loginAnimation);
 //        animationView.enableHardwareAcceleration(true);
         animationView.buildDrawingCache(true);
         animationView.enableMergePathsForKitKatAndAbove(true);
-
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN); // hidden keyboard
         setOnclick();
@@ -54,7 +50,7 @@ public class Login extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 EditText email, password;
-                email = findViewById(R.id.editTextPersonName);
+                email = findViewById(R.id.userEmail);
                 password = findViewById(R.id.editTextTextPassword);
                 LoginRequest.logIn(Login.this, email.getText().toString(), password.getText().toString(), new CourseRequest.VolleyCallback() {
                     @Override

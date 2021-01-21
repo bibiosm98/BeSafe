@@ -136,7 +136,7 @@ public class CourseView extends AppCompatActivity {
             levelValue.setText( ((JSONObject) properties.get(2)).getString("value"));
 
             String url = "https://bhpapi.herokuapp.com/api/courses/" + courseID + "/" + response.getString("thumbnail");
-            CourseImageRequest.getImage(this, url, 0, new CourseImageRequest.VolleyCallback() {
+            CourseImageRequest.getImage(this, url, 3, 0, new CourseImageRequest.VolleyCallback() {
                 @Override
                 public void onSuccess(Bitmap bitmap, int courseNumber) {
                     ImageView image = findViewById(R.id.courseImage);
@@ -310,7 +310,8 @@ public class CourseView extends AppCompatActivity {
 //
 //                Log.i(TAG, "DESCRIPTION,LENGTH = " + description.length());
 //                Log.i(TAG, "DESCRIPTION,LENGTH 2 = " + (description.length()%20)*50+250);
-                ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, (description.length()/20)*50+50); //ConstraintLayout.LayoutParams.WRAP_CONTENT);
+                ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
+//                ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, (description.length()/20)*50+50); //ConstraintLayout.LayoutParams.WRAP_CONTENT);
                 params.setMargins(40,50,40, 10);
 //                sectionConstraint.setOnClickListener(new func);
                 sectionConstraint.setLayoutParams(params);

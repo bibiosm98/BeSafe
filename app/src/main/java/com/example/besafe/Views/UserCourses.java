@@ -150,7 +150,7 @@ public class UserCourses extends AppCompatActivity {
                 boolean image = true;
                 if(image){
                     addCourseTextAndProgressBar(course, i - start);
-                    CourseImageRequest.getImage(this, url, counter, new CourseImageRequest.VolleyCallback() {
+                    CourseImageRequest.getImage(this, url, 3, counter, new CourseImageRequest.VolleyCallback() {
                         @Override
                         public void onSuccess(Bitmap bitmap, int courseNumber) {
                             ConstraintLayout course = (ConstraintLayout) layoutList.getChildAt(courseNumber);
@@ -298,9 +298,8 @@ public class UserCourses extends AppCompatActivity {
     }
 
     public void addImage(ConstraintLayout courseView, Bitmap bitmap) {
-        {
             ImageView image = new ImageView(UserCourses.this);
-            courseView.setBackgroundColor(getResources().getColor(R.color.courseFontWhite));
+//            courseView.setBackgroundColor(getResources().getColor(R.color.courseFontWhite));
 //                            bitmap.setHeight(bitmap.getScaledHeight(200));
             Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(output);
@@ -320,25 +319,26 @@ public class UserCourses extends AppCompatActivity {
             BitmapDrawable ob = new BitmapDrawable(getResources(), output);
             image.setBackground(ob);
             image.setId(View.generateViewId());
+        if(courseView !=null){
             courseView.addView(image, 0);
+
+            int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, 30, getResources().getDisplayMetrics());
+            ConstraintSet set = new ConstraintSet();
+            set.clone(courseView);
+            set.connect(courseView.getChildAt(2).getId(), ConstraintSet.BOTTOM, courseView.getChildAt(0).getId(), ConstraintSet.BOTTOM);
+            set.connect(courseView.getChildAt(1).getId(), ConstraintSet.BOTTOM, courseView.getChildAt(2).getId(), ConstraintSet.TOP);
+            set.connect(courseView.getChildAt(3).getId(), ConstraintSet.BOTTOM, courseView.getChildAt(0).getId(), ConstraintSet.BOTTOM, margin);
+            set.connect(courseView.getChildAt(3).getId(), ConstraintSet.RIGHT, courseView.getChildAt(0).getId(), ConstraintSet.RIGHT, margin);
+    //        set.connect(courseView.getChildAt(3).getId(), ConstraintSet.BOTTOM, courseView.getId(), ConstraintSet.BOTTOM, margin);
+    //        set.connect(courseView.getChildAt(3).getId(), ConstraintSet.RIGHT, courseView.getId(), ConstraintSet.RIGHT, margin);
+    //        set.connect(courseView.getChildAt(0).getId(),ConstraintSet.LEFT, courseView.getId(), ConstraintSet.LEFT, margin);
+            set.connect(courseView.getChildAt(0).getId(),ConstraintSet.RIGHT, courseView.getId(), ConstraintSet.RIGHT, margin);
+
+
+            set.centerHorizontally(courseView.getChildAt(4).getId(), courseView.getChildAt(3).getId());
+            set.centerVertically(courseView.getChildAt(4).getId(), courseView.getChildAt(3).getId());
+            set.applyTo(courseView);
         }
-
-        int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, 30, getResources().getDisplayMetrics());
-        ConstraintSet set = new ConstraintSet();
-        set.clone(courseView);
-        set.connect(courseView.getChildAt(2).getId(), ConstraintSet.BOTTOM, courseView.getChildAt(0).getId(), ConstraintSet.BOTTOM);
-        set.connect(courseView.getChildAt(1).getId(), ConstraintSet.BOTTOM, courseView.getChildAt(2).getId(), ConstraintSet.TOP);
-        set.connect(courseView.getChildAt(3).getId(), ConstraintSet.BOTTOM, courseView.getChildAt(0).getId(), ConstraintSet.BOTTOM, margin);
-        set.connect(courseView.getChildAt(3).getId(), ConstraintSet.RIGHT, courseView.getChildAt(0).getId(), ConstraintSet.RIGHT, margin);
-//        set.connect(courseView.getChildAt(3).getId(), ConstraintSet.BOTTOM, courseView.getId(), ConstraintSet.BOTTOM, margin);
-//        set.connect(courseView.getChildAt(3).getId(), ConstraintSet.RIGHT, courseView.getId(), ConstraintSet.RIGHT, margin);
-//        set.connect(courseView.getChildAt(0).getId(),ConstraintSet.LEFT, courseView.getId(), ConstraintSet.LEFT, margin);
-        set.connect(courseView.getChildAt(0).getId(),ConstraintSet.RIGHT, courseView.getId(), ConstraintSet.RIGHT, margin);
-
-
-        set.centerHorizontally(courseView.getChildAt(4).getId(), courseView.getChildAt(3).getId());
-        set.centerVertically(courseView.getChildAt(4).getId(), courseView.getChildAt(3).getId());
-        set.applyTo(courseView);
     }
 
     public void sortViewsByName() {

@@ -87,13 +87,13 @@ public class UserProfil extends AppCompatActivity {
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.i("WEB", "open Web Page: " + finalInfo);
-//                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(finalInfo));
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://stackoverflow.com/questions/2201917/how-can-i-open-a-url-in-androids-web-browser-from-my-application"));
-                    startActivity(browserIntent);
+              Log.i("WEB", "open Web Page: " + finalInfo);
+              Log.i("WEB", "open Web Page: " + "https://" + finalInfo);
+//              Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(finalInfo));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://" + finalInfo));
+                startActivity(browserIntent);
                 }
             });
-
 
             JSONObject supervisor = response.getJSONObject("supervisor");
 

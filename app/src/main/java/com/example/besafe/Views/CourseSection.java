@@ -169,7 +169,7 @@ public class CourseSection extends AppCompatActivity {
                         subsectionView.addView(textView, 0);
                         courseSections.addView(subsectionView);
 
-                        CourseImageRequest.getImage(this, url, i, new CourseImageRequest.VolleyCallback() {
+                        CourseImageRequest.getImage(this, url, 3, i, new CourseImageRequest.VolleyCallback() {
                             @Override
                             public void onSuccess(Bitmap bitmap, int subsectionNumber) {
                                 ConstraintLayout imageView = (ConstraintLayout) courseSections.getChildAt(subsectionNumber);
