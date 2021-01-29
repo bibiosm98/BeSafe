@@ -101,22 +101,82 @@ public class UserCourses extends AppCompatActivity {
     public void getCourses(final boolean endedCourses) {
         Log.i(TAG, "Function getCourses()");
 
-        CourseRequest.getUserCourses(this, "user/courses", new CourseRequest.VolleyCallback() {
-            @Override
-            public void onSuccess(JSONObject result) {
-                allUserCourses = (JSONObject) result;
-                if (result != null) {
-                    try {
-                        Log.i(TAG, allUserCourses.toString(3));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+        if(allUserCourses == null) {
+            CourseRequest.getUserCourses(this, "user/courses", new CourseRequest.VolleyCallback() {
+                @Override
+                public void onSuccess(JSONObject result) {
+                    allUserCourses = (JSONObject) result;
+                    if (result != null) {
+                        try {
+                            Log.i(TAG, allUserCourses.toString(3));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        addCoursesToViewWithoutImage(endedCourses);
+//                    addCoursesToView(endedCourses);
+                    } else {
+                        Log.i(TAG, "Null, brak pobranych kursów użytkownika");
                     }
-                    addCoursesToView(endedCourses);
-                } else {
-                    Log.i(TAG, "Null, brak pobranych kursów użytkownika");
                 }
+            });
+        }else{
+            addCoursesToViewWithoutImage(endedCourses);
+        }
+    }
+
+    private void addCoursesToViewWithoutImage(boolean endedCourses) {
+
+        int start = 0;
+        int counter = -1;
+        JSONArray coursesList = null;
+        try {
+            coursesList = allUserCourses.getJSONArray("response");
+            for (int i = start; i < coursesList.length(); i++) {
+                counter++;
+                final JSONObject courseInfo = (JSONObject) allUserCourses.getJSONArray("response").get(i);
+                if (endedCourses && ((Double) courseInfo.get("completed_percent")).intValue() != 100) {
+                    counter--;
+                    continue;
+                }
+                ConstraintLayout courseOnList = (ConstraintLayout) getLayoutInflater().inflate(R.layout.course_on_list_gradient, null,true);
+                ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
+                params.setMargins(40, 50, 40, 0);
+                courseOnList.setLayoutParams(params);
+                layoutList.addView(courseOnList);
+
+                TextView courseNameTextView = ((TextView)courseOnList.getChildAt(0));
+                TextView companyNameTextView = ((TextView)courseOnList.getChildAt(1));
+                TextView progressBarInfo = ((TextView)courseOnList.getChildAt(3));
+                ProgressBar progressBar = (ProgressBar)courseOnList.getChildAt(2);
+
+                String name = (String) courseInfo.get("name").toString();
+                String company = (String) courseInfo.get("company").toString();
+                String completed = (String) courseInfo.get("completed_percent").toString();
+
+
+                courseNameTextView.setText(name);
+
+                if (!courseInfo.get("company").toString().equals("null"))
+                    companyNameTextView.setText(company);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    progressBar.setProgress((int) Double.parseDouble(completed), true);
+                } else {
+                    progressBar.setProgress((int) Double.parseDouble(completed));
+                }
+                progressBarInfo.setText(String.format("%s%%", String.valueOf((int) Double.parseDouble(completed))));
+
+                courseOnList.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        openCourse(courseInfo);
+                    }
+                });
+
             }
-        });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addCoursesToView(Boolean endedCourses) {

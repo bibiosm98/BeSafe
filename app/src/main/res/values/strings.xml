@@ -5,8 +5,14 @@
     <!--    LINK DO API     -->
     <string name="apiLink">"https://bhpapi.herokuapp.com/api"</string>
 
-    <string name="hardEmail"></string>
-    <string name="hardPassword"></string>
+
+    <!--LOGOWANIEAUTOMATYCZNE-->
+    <!--<stringname="hardEmail">zhangbrian@harvey.biz</string>-->
+    <!--<stringname="hardPassword">james01</string>-->
+    <!--<stringname="hardEmail">rsherman@irwin.com</string>-->
+    <!--<stringname="hardPassword">copelandlarry</string>-->
+    <string name="hardEmail">bibiosm98@gmail.com</string>
+    <string name="hardPassword">Mlynarski98!</string>
 
     <string name="logIn">Zaloguj się</string>
     <string name="createAccount">Nie mam konta, co zrobić?</string>

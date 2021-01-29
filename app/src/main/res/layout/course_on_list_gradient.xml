@@ -1,8 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="90dp"
+    android:layout_margin="30dp"
+    android:background="@drawable/gradient_blue"
     >
 
+    <TextView
+        android:id="@+id/courseName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10sp"
+        android:paddingStart="20sp"
+        android:paddingEnd="100sp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/courseFontWhite"
+        app:layout_constraintBottom_toTopOf="@+id/companyName"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/companyName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="20sp"
+        android:paddingBottom="10sp"
+        android:textSize="15sp"
+        android:textColor="@color/courseFontWhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/courseProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:indeterminate="false"
+        android:progress="0"
+        tools:ignore="MissingConstraints"
+        android:background="@drawable/progress_bar_circle_shape"
+        android:progressDrawable="@drawable/progress_bar_circle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/courseProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="@color/courseFontWhite"
+        app:layout_constraintBottom_toBottomOf="@+id/courseProgressBar"
+        app:layout_constraintEnd_toEndOf="@+id/courseProgressBar"
+        app:layout_constraintStart_toStartOf="@+id/courseProgressBar"
+        app:layout_constraintTop_toTopOf="@+id/courseProgressBar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
