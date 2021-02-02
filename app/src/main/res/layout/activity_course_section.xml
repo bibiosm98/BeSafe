@@ -55,6 +55,7 @@
         >
 
         <ScrollView
+            android:id="@+id/sectionScroll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:layout_editor_absoluteX="3dp">

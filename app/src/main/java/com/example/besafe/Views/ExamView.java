@@ -23,6 +23,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.besafe.BitmapOperation;
 import com.example.besafe.R;
 import com.example.besafe.Requests.CourseImageRequest;
 import com.example.besafe.Requests.CourseRequest;
@@ -222,12 +223,13 @@ public class ExamView extends AppCompatActivity {
                 imageConstraint.removeAllViews();
             }else{
                 Log.i("EXAM", "Set picture");
-                ImageView testImage = findViewById(R.id.testImage);
+                final ImageView testImage = findViewById(R.id.testImage);
                 String url = "https://bhpapi.herokuapp.com/api/courses/" + courseId + "/" + response.getString("picture");
                 CourseImageRequest.getImage(this, url, 2, 0, new CourseImageRequest.VolleyCallback() {
                     @Override
                     public void onSuccess(Bitmap bitmap, int courseNumber) {
-                        addTestImage(bitmap);
+//                        addTestImage(bitmap);
+                        testImage.setBackground(BitmapOperation.scaleImage(ExamView.this, bitmap, testImage, false));
                     }
                 });
 

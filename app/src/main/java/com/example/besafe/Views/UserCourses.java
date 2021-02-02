@@ -113,7 +113,7 @@ public class UserCourses extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         addCoursesToViewWithoutImage(endedCourses);
-//                    addCoursesToView(endedCourses);
+//                        addCoursesToView(endedCourses);
                     } else {
                         Log.i(TAG, "Null, brak pobranych kursów użytkownika");
                     }
@@ -121,6 +121,7 @@ public class UserCourses extends AppCompatActivity {
             });
         }else{
             addCoursesToViewWithoutImage(endedCourses);
+//          addCoursesToView(endedCourses);
         }
     }
 

@@ -1,6 +1,7 @@
 package com.example.besafe.Views;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -8,9 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.besafe.R;
+import com.example.besafe.Requests.CourseImageRequest;
 import com.example.besafe.Requests.CourseRequest;
 import com.example.besafe.Requests.LoginRequest;
 
@@ -32,6 +35,14 @@ public class Login extends AppCompatActivity{
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN); // hidden keyboard
         setOnclick();
+
+        //getting image and store in cashe
+        CourseImageRequest.getImage(this, "https://bhpapi.herokuapp.com/api/courses/bhp1/pic1.jpg", 3, 0, new CourseImageRequest.VolleyCallback() {
+            @Override
+            public void onSuccess(Bitmap bitmap, int courseNumber) {
+
+            }
+        });
     }
 
     @Override

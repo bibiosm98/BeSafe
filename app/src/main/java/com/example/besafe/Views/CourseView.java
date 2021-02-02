@@ -141,7 +141,7 @@ public class CourseView extends AppCompatActivity {
                 public void onSuccess(Bitmap bitmap, int courseNumber) {
                     ImageView image = findViewById(R.id.courseImage);
 //                    BitmapToImage.convert(CourseView.this, bitmap, image);
-                    image.setBackground(BitmapOperation.scaleImage(CourseView.this, bitmap, image));
+                    image.setBackground(BitmapOperation.scaleImage(CourseView.this, bitmap, image, true));
                 }
             });
 

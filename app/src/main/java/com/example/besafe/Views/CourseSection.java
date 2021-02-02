@@ -25,10 +25,12 @@ import android.webkit.URLUtil;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.example.besafe.BitmapOperation;
 import com.example.besafe.GlobalToken;
 import com.example.besafe.R;
 import com.example.besafe.Requests.CourseImageRequest;
@@ -153,27 +155,76 @@ public class CourseSection extends AppCompatActivity {
 
                         String caption = ((JSONObject) subsections.get(i)).getString("caption");
 
-//                        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, 50);
-//                        params.setMargins(50,150,50, 50);
-//                        textView.setLayoutParams(params);
+                        ConstraintLayout.LayoutParams textParams = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, 50);
+                        textParams.setMargins(0,20,0, 0);
+                        textView.setLayoutParams(textParams);
                         textView.setText(caption);
-                        textView.setPadding(0,10,0,0);
+//                        textView.setPadding(0,30,0,0);
 
-                        subsectionView.setBackground(ContextCompat.getDrawable(this, R.drawable.round_course_gradient_blue));
-//                        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, 600);
+                        subsectionView.setBackground(ContextCompat.getDrawable(this, R.drawable.round_background_grey));
                         ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
+//                        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, 700);
 //                        params = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, 500);
                         params.setMargins(40,50,40, 60);
                         subsectionView.setLayoutParams(params);
 
                         subsectionView.addView(textView, 0);
+
+
+                        ImageView subsectionImage = new ImageView(CourseSection.this);
+                        ConstraintLayout.LayoutParams imageParams = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, 600);
+                        imageParams.setMargins(50,150,50, 50);
+                        subsectionImage.setLayoutParams(imageParams);
+
+                        subsectionView.addView(subsectionImage, 0);
+
                         courseSections.addView(subsectionView);
 
                         CourseImageRequest.getImage(this, url, 3, i, new CourseImageRequest.VolleyCallback() {
                             @Override
                             public void onSuccess(Bitmap bitmap, int subsectionNumber) {
-                                ConstraintLayout imageView = (ConstraintLayout) courseSections.getChildAt(subsectionNumber);
-                                addImage(imageView, bitmap);
+//                                ConstraintLayout imageView = (ConstraintLayout) courseSections.getChildAt(subsectionNumber);
+//                                addImage(imageView, bitmap);
+//
+                                ConstraintLayout imageConstraint = (ConstraintLayout) courseSections.getChildAt(subsectionNumber);
+                                imageConstraint.setBackground(ContextCompat.getDrawable(CourseSection.this, R.drawable.round_background_white));
+                                ImageView image = (ImageView) imageConstraint.getChildAt(0);
+                                image.setId(View.generateViewId());
+
+//                                ImageView image = new ImageView(CourseSection.this);
+                                Log.i("Bitmap", "W " + bitmap.getWidth() + ", H " + bitmap.getHeight());
+                                Log.i("Image", "W " + image.getWidth() + ", H " + image.getHeight());
+
+
+                                int newHeight = bitmap.getHeight() * image.getWidth() / bitmap.getWidth();
+//                                ConstraintLayout.LayoutParams imageParams = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, newHeight);
+//                                imageParams.setMargins(40,50,40, 60);
+//                                image.setLayoutParams(imageParams);
+//
+//                                ConstraintLayout imageConstraint = (ConstraintLayout) courseSections.getChildAt(subsectionNumber);
+//                                imageConstraint.addView(image, 0);
+
+                                Log.i("NEW Image", "W " + image.getWidth() + ", H " + newHeight);
+                                Log.i("NEW Image", "W " + image.getWidth() + ", H " + image.getHeight());
+
+                                image.setBackground(BitmapOperation.scaleImage(CourseSection.this, bitmap, image, false));
+
+
+                                TextView pictureCaption = (TextView) imageConstraint.getChildAt(1);
+
+                                ConstraintSet set = new ConstraintSet();
+                                set.clone(imageConstraint);
+                                set.connect(image.getId(), ConstraintSet.LEFT, imageConstraint.getId(), ConstraintSet.LEFT);
+                                set.connect(image.getId(), ConstraintSet.RIGHT, imageConstraint.getId(), ConstraintSet.RIGHT);
+                                set.connect(image.getId(), ConstraintSet.TOP, imageConstraint.getId(), ConstraintSet.TOP);
+                                set.connect(image.getId(), ConstraintSet.BOTTOM, pictureCaption.getId(), ConstraintSet.TOP);
+
+
+                                set.connect(pictureCaption.getId(), ConstraintSet.RIGHT, imageConstraint.getId(), ConstraintSet.RIGHT);
+                                set.connect(pictureCaption.getId(), ConstraintSet.LEFT, imageConstraint.getId(), ConstraintSet.LEFT);
+                                set.connect(pictureCaption.getId(), ConstraintSet.BOTTOM, imageConstraint.getId(), ConstraintSet.BOTTOM);
+
+                                set.applyTo(imageConstraint);
                             }
                         });
                         break;
@@ -371,6 +422,8 @@ public class CourseSection extends AppCompatActivity {
 
         set.applyTo(videoViewConstraint);
         videoViewConstraint.addView(videoView);
+
+        ((ScrollView) findViewById(R.id.sectionScroll)).fullScroll(ScrollView.FOCUS_UP);
     }
     public void addNextButton(){
         ConstraintLayout nextButtonConstraint = new ConstraintLayout(this);

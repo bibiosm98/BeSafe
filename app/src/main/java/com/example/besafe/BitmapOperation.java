@@ -13,7 +13,7 @@ import android.media.Image;
 import android.widget.ImageView;
 
 public class BitmapOperation {
-    public static BitmapDrawable scaleImage(Context context, Bitmap bitmap, ImageView image){
+    public static BitmapDrawable scaleImage(Context context, Bitmap bitmap, ImageView image , boolean greyScale){
         int sourceWidth = bitmap.getWidth();
         int sourceHeight = bitmap.getHeight();
 
@@ -49,7 +49,8 @@ public class BitmapOperation {
         Paint p = new Paint(Color.RED);
         //ColorFilter filter = new LightingColorFilter(0xFFFFFFFF , 0x00222222); // lighten
         ColorFilter filter = new LightingColorFilter(0xFF7F7F7F, 0x00000000);    // darken
-        p.setColorFilter(filter);
+        if(greyScale)
+            p.setColorFilter(filter);
 
 //                    Shader shaderA = new LinearGradient(0, 0, newWidth, newHeight, 0xFF7F7F7F, 0x00000000, Shader.TileMode.CLAMP);
 //                    Shader shaderB = new BitmapShader(output, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
