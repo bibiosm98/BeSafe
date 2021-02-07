@@ -425,6 +425,7 @@ public class CourseSection extends AppCompatActivity {
 
         ((ScrollView) findViewById(R.id.sectionScroll)).fullScroll(ScrollView.FOCUS_UP);
     }
+
     public void addNextButton(){
         ConstraintLayout nextButtonConstraint = new ConstraintLayout(this);
         ConstraintLayout nextButton = new ConstraintLayout(this);
